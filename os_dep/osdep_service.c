@@ -2208,7 +2208,7 @@ static int isDirReadable(const char *pathname, u32 *sz)
 * If readable, @param sz is got
 * @param path the path of the file to test
 * @return Linux specific error code
-*/
+* - kernel 5.x.x  build Fixed by blackPanther OS team */
 static int isFileReadable(const char *path, u32 *sz)
 {
 	struct file *fp;
