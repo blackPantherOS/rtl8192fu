@@ -2133,6 +2133,7 @@ BIP_exit:
 #ifndef PLATFORM_FREEBSD
 #if defined(CONFIG_TDLS)
 /* compress 512-bits */
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 8, 0))
 static int sha256_compress(struct sha256_state *md, unsigned char *buf)
 {
 	u32 S[8], W[64], t0, t1;
@@ -2179,7 +2180,6 @@ static int sha256_compress(struct sha256_state *md, unsigned char *buf)
 		md->state[i] = md->state[i] + S[i];
 	return 0;
 }
-
 /* Initialize the hash state */
 static void sha256_init(struct sha256_state *md)
 {
@@ -2312,6 +2312,8 @@ static u8 os_strlen(const char *s)
 		p++;
 	return p - s;
 }
+#endif
+
 #endif
 
 #if defined(CONFIG_TDLS) || defined(CONFIG_RTW_MESH_AEK)
